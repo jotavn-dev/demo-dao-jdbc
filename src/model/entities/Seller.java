@@ -1,7 +1,7 @@
 package model.entities;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 
 public class Seller implements Serializable {
@@ -11,19 +11,22 @@ public class Seller implements Serializable {
 	private Integer id;
 	private String name;
 	private String email;
-	private LocalDate birthDate;
+	private Date birthDate;
 	private Double baseSalary;
+	
+	private Department department;
 	
 	public Seller() {
 	}
 
-	public Seller(Integer id, String name, String email, LocalDate birthDate, Double baseSalary) {
+	public Seller(Integer id, String name, String email, Date birthDate, Double baseSalary, Department department) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.birthDate = birthDate;
 		this.baseSalary = baseSalary;
+		this.department = department;
 	}
 
 	public Integer getId() {
@@ -50,11 +53,11 @@ public class Seller implements Serializable {
 		this.email = email;
 	}
 
-	public LocalDate getBirthDate() {
+	public Date getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(LocalDate birthDate) {
+	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
 
@@ -64,6 +67,14 @@ public class Seller implements Serializable {
 
 	public void setBaseSalary(Double baseSalary) {
 		this.baseSalary = baseSalary;
+	}
+	
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 
 	@Override
@@ -88,15 +99,16 @@ public class Seller implements Serializable {
 	@Override
 	public String toString() {
 		return "Seller [id=" + id + ", name=" + name + ", email=" + email + ", birthDate=" + birthDate + ", baseSalary="
-				+ baseSalary + "]";
+				+ baseSalary + ", department=" + department + "]";
 	}
-	
+
 	public static class Builder {
 		private Integer id;
 		private String name;
 		private String email;
-		private LocalDate birthDate;
+		private Date birthDate;
 		private Double baseSalary;
+		private Department department;
 		
 		public Builder setId(Integer id) {
 			this.id = id;
@@ -113,7 +125,7 @@ public class Seller implements Serializable {
 			return this;
 		}
 		
-		public Builder setBirthDate(LocalDate birthDate) {
+		public Builder setBirthDate(Date birthDate) {
 			this.birthDate = birthDate;
 			return this;
 		}
@@ -122,9 +134,14 @@ public class Seller implements Serializable {
 			this.baseSalary = baseSalary;
 			return this;
 		}
+		
+		public Builder setDepartment(Department department) {
+			this.department = department;
+			return this;
+		}
 
 		public Seller build() {
-			return new Seller(id, name, email, birthDate, baseSalary);
+			return new Seller(id, name, email, birthDate, baseSalary, department);
 		}
 	}
 }
