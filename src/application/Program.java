@@ -14,9 +14,9 @@ public class Program {
 		System.out.println("=== TEST 1: seller findById ===");
 		SellerDao sellerDao = DaoFactory.createSellerDao();
 		
-		Seller seller = sellerDao.findById(3);
+		Seller findById = sellerDao.findById(3);
 		
-		System.out.println(seller);
+		System.out.println(findById);
 		
 		System.out.println("\n=== TEST 2: seller findByDepartment ===");
 		
@@ -27,8 +27,16 @@ public class Program {
 		
 		List<Seller> list = sellerDao.findByDepartment(department);
 		
-		for (Seller obj : list) {
-			System.out.println(obj);
+		for (Seller findByDepartment : list) {
+			System.out.println(findByDepartment);
+		}
+		
+		System.out.println("\n=== TEST 3: seller findAll ===");
+		
+		list = sellerDao.findAll();
+		
+		for (Seller findAll : list) {
+			System.out.println(findAll);
 		}
 	}
 }
