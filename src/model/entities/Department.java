@@ -55,4 +55,23 @@ public class Department implements Serializable {
 	public String toString() {
 		return "Department [id=" + id + ", name=" + name + "]";
 	}
+	
+	public static class Builder {
+		private Integer id;
+		private String name;
+		
+		public Builder setId(Integer id) {
+			this.id = id;
+			return this;
+		}
+		
+		public Builder setName(String name) {
+			this.name = name;
+			return this;
+		}
+		
+		public Department build() {
+			return new Department(id, name);
+		}
+	}
 }
