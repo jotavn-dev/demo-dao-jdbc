@@ -3,6 +3,7 @@ package application;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Scanner;
 
 import model.dao.DaoFactory;
 import model.dao.SellerDao;
@@ -12,6 +13,8 @@ import model.entities.Seller;
 public class Program {
 
 	public static void main(String[] args) {
+		
+		Scanner scanner = new Scanner(System.in);
 		
 		DateTimeFormatter fm1 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		
@@ -64,5 +67,10 @@ public class Program {
 		seller.setBaseSalary(7000.0);
 		sellerDao.update(seller);
 		System.out.println("Update completed");
+		
+		System.out.println("\n=== TEST 6: seller deleteById ===");
+		System.out.print("Enter id for delete test: ");
+		int id = scanner.nextInt();
+		sellerDao.deleteById(id);
 	}
 }
