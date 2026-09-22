@@ -1,6 +1,7 @@
 package application;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import model.dao.DaoFactory;
@@ -11,6 +12,8 @@ import model.entities.Seller;
 public class Program {
 
 	public static void main(String[] args) {
+		
+		DateTimeFormatter fm1 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		
 		SellerDao sellerDao = DaoFactory.createSellerDao();
 		
@@ -43,16 +46,23 @@ public class Program {
 		
 		System.out.println("\n=== TEST 4: seller Insert ===");
 		
-		
 		Seller seller = new Seller.Builder()
 				.setId(null)
 				.setName("Joao Vitor")
 				.setEmail("joao@gmail.com")
-				.setBirthDate(new Date())
+				.setBirthDate(LocalDate.parse("19/03/1992", fm1))
 				.setBaseSalary(2000.0)
 				.setDepartment(department)
 				.build();
 		sellerDao.insert(seller);
 		System.out.println("Inserted! New id = " + seller.getId());
+		
+		System.out.println("\n=== TEST 5: seller Update ===");
+		
+		seller = sellerDao.findById(2);
+		seller.setName("Diego Silva");
+		seller.setBaseSalary(7000.0);
+		sellerDao.update(seller);
+		System.out.println("Update completed");
 	}
 }
